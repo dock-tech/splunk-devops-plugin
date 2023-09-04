@@ -5,6 +5,8 @@ import com.splunk.splunkjenkins.SplunkJenkinsInstallation;
 import hudson.model.Action;
 
 import com.splunk.splunkjenkins.Messages;
+import jenkins.model.Jenkins;
+import org.apache.commons.lang.StringUtils;
 
 public class LinkSplunkAction implements Action {
     String query;
@@ -19,17 +21,29 @@ public class LinkSplunkAction implements Action {
 
     @Override
     public String getIconFileName() {
-        return Messages.SplunkIconName();
+        if (Jenkins.get().hasPermission(ReportAction.SPLUNK_LINK)) {
+            return Messages.SplunkIconName();
+        } else {
+            return null;
+        }
     }
 
     @Override
     public String getDisplayName() {
-        return displayName;
+        if (Jenkins.get().hasPermission(ReportAction.SPLUNK_LINK)) {
+            return displayName;
+        } else {
+            return null;
+        }
     }
 
     @Override
     public String getUrlName() {
         SplunkJenkinsInstallation instance = SplunkJenkinsInstallation.get();
-        return instance.getAppUrlOrHelp() + page + "?" + query;
+        if (StringUtils.isNotEmpty(query)) {
+            return instance.getAppUrlOrHelp() + page + "?" + query;
+        } else {
+            return instance.getAppUrlOrHelp() + page;
+        }
     }
 }

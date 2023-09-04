@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.splunk.splunkins</groupId>
         <artifactId>pom</artifactId>
-        <version>1.9.10-SNAPSHOT</version>
+        <version>1.10.2-SNAPSHOT</version>
     </parent>
 
     <artifactId>splunk-devops-extend</artifactId>
@@ -30,7 +30,9 @@
             <email>xiao.xj@outlook.com</email>
         </developer>
     </developers>
-
+    <properties>
+        <useBeta>true</useBeta>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -154,62 +156,45 @@
         <dependency>
             <groupId>org.jenkins-ci.plugins.workflow</groupId>
             <artifactId>workflow-durable-task-step</artifactId>
-            <version>2.38</version>
+            <version>2.39</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.jenkins-ci.plugins.workflow</groupId>
             <artifactId>workflow-api</artifactId>
-            <version>2.42</version>
-            <!--TaskListenerDecorator API is stable since 2.36-->
+            <version>1165.v02c3db_a_6b_e36</version>
+            <!--TaskListenerDecorator API beta feature-->
         </dependency>
         <dependency>
             <groupId>org.jenkins-ci.plugins.workflow</groupId>
             <artifactId>workflow-job</artifactId>
-            <version>2.40</version>
+            <version>2.41</version>
         </dependency>
         <dependency>
             <groupId>org.jenkins-ci.plugins.workflow</groupId>
             <artifactId>workflow-step-api</artifactId>
-            <version>2.23</version>
+            <version>625.vd896b_f445a_f8</version>
         </dependency>
         <dependency>
             <groupId>org.jenkins-ci.plugins.workflow</groupId>
             <artifactId>workflow-cps</artifactId>
-            <version>2.90</version>
+            <version>2648.2651.v230593e03e9f</version>
         </dependency>
         <dependency>
             <groupId>org.jenkins-ci.plugins.workflow</groupId>
             <artifactId>workflow-support</artifactId>
-            <version>3.8</version>
-            <scope>test</scope>
+            <version>813.vb_d7c3d2984a_0</version>
         </dependency>
         <dependency>
             <groupId>org.jenkins-ci.plugins.workflow</groupId>
             <artifactId>workflow-basic-steps</artifactId>
-            <version>2.20</version>
+            <version>2.24</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.jenkins-ci.plugins.workflow</groupId>
             <artifactId>workflow-multibranch</artifactId>
-            <version>2.23</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jenkins-ci.plugins</groupId>
-            <artifactId>structs</artifactId>
-            <version>1.23</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jenkins-ci.plugins</groupId>
-            <artifactId>scm-api</artifactId>
-            <version>2.6.4</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jenkins-ci.plugins</groupId>
-            <artifactId>junit</artifactId>
-            <version>1.49</version>
+            <version>711.vdfef37cda_816</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -217,6 +202,36 @@
             <groupId>org.jenkins-ci.ui</groupId>
             <artifactId>jquery-detached</artifactId>
             <version>1.2.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jenkins-ci.plugins</groupId>
+            <artifactId>junit</artifactId>
+            <version>1.47</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.4</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jenkins-ci.plugins</groupId>
+            <artifactId>structs</artifactId>
+            <version>308.v852b473a2b8c</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jenkins-ci.plugins</groupId>
+            <artifactId>scm-api</artifactId>
+            <version>608.vfa_f971c5a_a_e9</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jenkins-ci.plugins</groupId>
+            <artifactId>pipeline-build-step</artifactId>
+            <version>2.18</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

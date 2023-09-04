@@ -1,3 +1,12 @@
+### 1.10.1 (February 15, 2023)
+- allow user to hide splunk hyperlink, thanks to [StefanSpieker](https://github.com/StefanSpieker)
+- update splunk hyperlink for [Splunk App for Jenkins](https://splunkbase.splunk.com/app/3332), thanks to [Michael Fitoussi](https://github.com/mifitous)
+
+### 1.10.0 (July 4, 2022)
+- SECURITY-2128 plugin logs unmasked credentials, thanks to [Pierson Yieh](https://github.com/pyieh)
+- JENKINS-68775 pipeline build step is considered a stage in splunk plugin, thanks to [Guilherme Mota](https://github.com/guilhermemotadock)
+- JENKINS-68440 null pointer exception in LabelMarkupText, thanks to [Kyle Cronin](https://github.com/cronik)
+
 ### 1.9.9 (January 8, 2022)
 - JENKINS-67492 fix xml entity not declared error when parsing console node
 ### 1.9.8 (December 18, 2021)

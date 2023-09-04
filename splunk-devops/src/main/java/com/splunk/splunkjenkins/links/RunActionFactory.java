@@ -8,7 +8,7 @@ import hudson.model.Job;
 import hudson.model.Run;
 import jenkins.model.TransientActionFactory;
 
-import javax.annotation.Nonnull;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import java.io.File;
 import java.util.Collection;
 import java.util.Collections;
@@ -21,20 +21,22 @@ public class RunActionFactory extends TransientActionFactory<Run> {
         return Run.class;
     }
 
-    @Nonnull
+    @NonNull
     @Override
-    public Collection<? extends Action> createFor(@Nonnull Run target) {
+    public Collection<? extends Action> createFor(@NonNull Run target) {
         Job job = target.getParent();
-        LogEventHelper.UrlQueryBuilder builder=new LogEventHelper.UrlQueryBuilder()
-                .putIfAbsent("host", SplunkJenkinsInstallation.get().getMetadataHost())
+        LogEventHelper.UrlQueryBuilder builder = new LogEventHelper.UrlQueryBuilder()
                 .putIfAbsent("job", job.getFullName())
                 .putIfAbsent("build", target.getNumber() + "");
         File junitFile = new File(target.getRootDir(), "junitResult.xml");
         if (junitFile.exists() || job.getClass().getName().startsWith("hudson.maven.")) {
-            String query =builder.build();
-            return Collections.singleton(new LinkSplunkAction("test_analysis", query, "Splunk"));
+            // test page is using master query param instead of host
+            builder.putIfAbsent("master", SplunkJenkinsInstallation.get().getMetadataHost());
+            String query = builder.build();
+            return Collections.singleton(new LinkSplunkAction("testAnalysis", query, "Splunk"));
         }
-        String query =builder.putIfAbsent("type","build").build();
-        return Collections.singleton(new LinkSplunkAction("build_analysis", query, "Splunk"));
+        String query = builder.putIfAbsent("type", "build")
+                .putIfAbsent("host", SplunkJenkinsInstallation.get().getMetadataHost()).build();
+        return Collections.singleton(new LinkSplunkAction("build", query, "Splunk"));
     }
 }
